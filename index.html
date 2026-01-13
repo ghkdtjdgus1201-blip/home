@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모던 카드 레이아웃</title>
+    <!-- 구글 폰트 적용 (가독성 좋은 Noto Sans KR) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 기본 스타일 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* 1. 카드 그리드 컨테이너 (반응형 설정) */
+        .card-container {
+            display: grid;
+            /* 기본적으로 가로로 3개 배치 */
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px; /* 카드 사이 간격 */
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* 2. 개별 카드 스타일 */
+        .card {
+            background-color: #fff;
+            border-radius: 15px; /* 모서리 둥글게 */
+            overflow: hidden; /* 자식 요소가 모서리를 넘어가지 않게 */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* 그림자 적용 */
+            transition: transform 0.3s ease; /* 호버 애니메이션 */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px); /* 호버 시 살짝 위로 이동 */
+        }
+
+        /* 3. 상단 이미지 영역 */
+        .card-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 이미지 비율 유지하며 꽉 채움 */
+        }
+
+        /* 4. 중단 설명 텍스트 영역 */
+        .card-content {
+            padding: 25px;
+            flex-grow: 1; /* 텍스트 양에 상관없이 영역 확보 */
+        }
+
+        .card-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        /* 5. 하단 버튼 영역 */
+        .card-footer {
+            padding: 20px;
+            text-align: center; /* 버튼 중앙 정렬 */
+            border-top: 1px solid #eee;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #4A90E2; /* 버튼 기본 색상 */
+            color: #fff;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #357ABD; /* 호버 시 색상 변화 */
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+        }
+
+        /* 6. 반응형 미디어 쿼리 (태블릿/모바일) */
+        @media (max-width: 1024px) {
+            .card-container {
+                grid-template-columns: repeat(2, 1fr); /* 태블릿에선 2열 */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-container {
+                grid-template-columns: 1fr; /* 모바일은 세로로 1열 정렬 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 전체 카드 컨테이너 -->
+    <div class="card-container">
+        
+        <!-- 첫 번째 카드 -->
+        <article class="card">
+            <div class="card-image">
+                <img src="gameimage.png" alt="네온 오버드라이브">
+            </div>
+            <div class="card-content">
+                <h3>네온 오버드라이브</h3>
+                <p>신스웨이브 감성의 짜릿한 슈팅 게임을 즐겨보세요. 미사일을 강화하고 강력한 적들을 제압하세요!</p>
+            </div>
+            <div class="card-footer">
+                <a href="./game.html" class="btn">접속하기</a>
+            </div>
+        </article>
+
+        <!-- 두 번째 카드 -->
+        <article class="card">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=600" alt="코딩 이미지">
+            </div>
+            <div class="card-content">
+                <h3>디자인 솔루션</h3>
+                <p>브랜드의 가치를 높여주는 모던하고 깔끔한 디자인을 제공합니다. 시각적인 즐거움과 기능성을 동시에 잡으세요.</p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn">접속하기</a>
+            </div>
+        </article>
+
+        <!-- 세 번째 카드 -->
+        <article class="card">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=600" alt="프로그래밍 이미지">
+            </div>
+            <div class="card-content">
+                <h3>데이터 분석</h3>
+                <p>정확한 데이터 분석을 통해 비즈니스의 통찰력을 제공합니다. 복잡한 데이터를 한눈에 볼 수 있도록 시각화합니다.</p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn">접속하기</a>
+            </div>
+        </article>
+
+    </div>
+
+</body>
+</html>
